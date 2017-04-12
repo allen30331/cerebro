@@ -13,6 +13,7 @@ const userSchema = mongoose.Schema({
 userSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,
+		firstName: this.firstName,
 		lastName: this.lastName,
 		email: this.email,
 		password: this.password,
