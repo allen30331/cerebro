@@ -6,9 +6,9 @@
 > Cerebro Music is an app intended to provide users the ability to find songs and create playlists.
 
 
-#API Routes
+# API Routes
 
-##Users
+## Users
 
 * get(/users). Retrieves all users.
 * get(/users/:id). Retrieves user by id.
