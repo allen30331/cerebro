@@ -25,6 +25,7 @@ userSchema.methods.apiRepr = function() {
 	}
 }
 
+//Instantiates our User model.
 const User = mongoose.model('Users', userSchema);
 
 module.exports = {User};
