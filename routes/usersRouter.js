@@ -21,6 +21,18 @@ router.get('/', function(req,res) {
 });
 
 
+router.get('/:id', function(req,res) {
+
+	User
+		.findById(req.params.id)
+		.exec()
+		.then(users => res.json(users.apiRepr()))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({error: 'there was an error'});
+		});
+})
+
 
 router.post('/', function(req,res) {
 	User
@@ -40,6 +52,23 @@ router.post('/', function(req,res) {
 
 
 
+router.put('/:id', function(req,res) {
+
+	const toUpdate = {};
+	const updateableFields = ['firstName', 'lastName', 'email', 'password', 'playlists']
+
+	updateableFields.forEach(field => {
+		if (field in req.body) {
+			toUpdate[field] = req.body[field];
+		}
+
+		User
+			.findByIdAndUpdate(req.params.id, {$set: toUpdate})
+			.exec()
+			.then(user => res.status(204).end())
+			.catch(err => res.status(500).json({message: 'there was an error'}));
+	});
+});
 
 
 module.exports = router;
