@@ -17,6 +17,9 @@ const morgan = require('morgan');
 //instantiates mongoose library to interact with mongo database. 
 const mongoose = require('mongoose');
 
+
+const usersRouter = require('./routes/usersRouter');
+
 const {DATABASE_URL, PORT } =  require('./config/config');
 
 //tells express which folder to serve static files from
@@ -33,6 +36,8 @@ app.use(bodyParser.json());
 //database. We can use methods like, exec(), then().
 mongoose.Promise = global.Promise; 
 
+
+app.use('/users', usersRouter);
 
 
 // closeServer needs access to a server object, but that only
