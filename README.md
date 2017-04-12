@@ -15,3 +15,12 @@
 * post(/users). Creates a user.
 * put(/users/:id). Updates user by id. 
 * delete('/users/:id'). Deletes user by id. 
+
+
+## Playlists
+
+* get(/playlists). Retrieves all playlists.
+* get(/playlists/:id). Retrieves playlist by id.
+* post(/playlists). Creates a playlist.
+* put(/playlists/:id). Updates playlist by id. 
+* delete('/playlists/:id'). Deletes playlist by id.
