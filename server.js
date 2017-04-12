@@ -17,11 +17,12 @@ const morgan = require('morgan');
 //instantiates mongoose library to interact with mongo database. 
 const mongoose = require('mongoose');
 
-
+ 
 const usersRouter = require('./routes/usersRouter');
 
 const playlistsRouter = require('./routes/playlistsRouter');
 
+//We import the database_url and port from the config file
 const {DATABASE_URL, PORT } =  require('./config/config');
 
 //tells express which folder to serve static files from
@@ -38,8 +39,12 @@ app.use(bodyParser.json());
 //database. We can use methods like, exec(), then().
 mongoose.Promise = global.Promise; 
 
-
+//When a request is made to the "users" end point it will be routed
+//to the userRouter file and handled there.
 app.use('/users', usersRouter);
+
+//When a request is made to the "playlists" end point it will be routed
+//to the playlistsRouter file and handled there.
 app.use('/playlists', playlistsRouter);
 
 

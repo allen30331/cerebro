@@ -3,6 +3,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jasonParser = bodyParser.json();
 
+//We import the user model
 const {User} = require('../models/users');
 
 
