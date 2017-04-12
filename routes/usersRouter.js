@@ -6,6 +6,7 @@ const jasonParser = bodyParser.json();
 const {User} = require('../models/users');
 
 
+//Retrieves all users
 router.get('/', function(req,res) {
 	console.log('hello');
 	User
@@ -21,6 +22,7 @@ router.get('/', function(req,res) {
 });
 
 
+//Retrieves one user by id
 router.get('/:id', function(req,res) {
 
 	User
@@ -34,6 +36,7 @@ router.get('/:id', function(req,res) {
 })
 
 
+//Creates user
 router.post('/', function(req,res) {
 	User
 		.create({
@@ -51,11 +54,14 @@ router.post('/', function(req,res) {
 });
 
 
-
+//Updates user by id
 router.put('/:id', function(req,res) {
 
 	const toUpdate = {};
 	const updateableFields = ['firstName', 'lastName', 'email', 'password', 'playlists']
+
+	
+
 
 	updateableFields.forEach(field => {
 		if (field in req.body) {
@@ -68,6 +74,17 @@ router.put('/:id', function(req,res) {
 			.then(user => res.status(204).end())
 			.catch(err => res.status(500).json({message: 'there was an error'}));
 	});
+});
+
+
+//Deletes user by id
+router.delete('/:id', function(req,res) {
+
+	User
+		.findByIdAndRemove(req.params.id)
+		.exec()
+		.then(user => res.status(204).end())
+		.catch(err => res.status(500).json({message: 'there was an error'}));
 });
 
 

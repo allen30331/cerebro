@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-
+//We define how our collection data should look. 
 const userSchema = mongoose.Schema({
 	firstName: {type: String, required: true},
 	lastName: {type: String, required: true},
@@ -10,6 +10,10 @@ const userSchema = mongoose.Schema({
 });
 
 
+//This gives each instance of our User model an apiRepr method, 
+//which we will use as the standard way of representing 
+//users in our API. Instead of simply passing along the underlying 
+//document itself, we'll pass along this composite data.
 userSchema.methods.apiRepr = function() {
 	return {
 		id: this._id,
