@@ -24,10 +24,10 @@ router.get('/', function(req,res) {
 //Retrieves one user by id
 router.get('/:id', function(req,res) {
 
-	Playlist
+	User
 		.findById(req.params.id)
 		.exec()
-		.then(playlists => res.json(playlists.apiRepr()))
+		.then(users => res.json(users.apiRepr()))
 		.catch(err => {
 			console.error(err);
 			res.status(500).json({error: 'there was an error'});

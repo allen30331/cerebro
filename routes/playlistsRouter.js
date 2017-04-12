@@ -6,6 +6,7 @@ const jasonParser = bodyParser.json();
 const {Playlist} = require('../models/playlists');
 
 
+
 //Retrieves all playlists
 router.get('/', function(req,res) {
 	
@@ -23,7 +24,18 @@ router.get('/', function(req,res) {
 
 
 
+//Retrieves one playlist by id
+router.get('/:id', function(req,res) {
 
+	Playlist
+		.findById(req.params.id)
+		.exec()
+		.then(playlist => res.json(playlist.apiRepr()))
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({error: 'there was an error'});
+		});
+})
 
 
 
@@ -43,6 +55,40 @@ router.post('/', function(req,res) {
 });
 
 
+
+//Updates playlist by id
+router.put('/:id', function(req,res) {
+
+	const toUpdate = {};
+	const updateableFields = ['songs', 'owner'];
+
+
+
+
+	updateableFields.forEach(field => {
+		if (field in req.body) {
+			toUpdate[field] = req.body[field];
+		}
+
+		Playlist
+			.findByIdAndUpdate(req.params.id, {$set: toUpdate})
+			.exec()
+			.then(playlist => res.status(204).end())
+			.catch(err => res.status(500).json({message: 'there was an error'}));
+	});
+});
+
+
+
+//Deletes playlist by id
+router.delete('/:id', function(req,res) {
+
+	Playlist
+		.findByIdAndRemove(req.params.id)
+		.exec()
+		.then(playlist => res.status(204).end())
+		.catch(err => res.status(500).json({message: 'there was an error'}));
+});
 
 
 
