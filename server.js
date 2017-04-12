@@ -17,9 +17,10 @@ const morgan = require('morgan');
 //instantiates mongoose library to interact with mongo database. 
 const mongoose = require('mongoose');
 
- 
+//Instantiates a location where "user" requests will be routed to. 
 const usersRouter = require('./routes/usersRouter');
 
+//Instantiates a location where "playlists" requests will be routed to.
 const playlistsRouter = require('./routes/playlistsRouter');
 
 //We import the database_url and port from the config file
