@@ -8,7 +8,6 @@ const {User} = require('../models/users');
 
 //Retrieves all users
 router.get('/', function(req,res) {
-	console.log('hello');
 	User
 		.find()
 		.exec()
@@ -25,10 +24,10 @@ router.get('/', function(req,res) {
 //Retrieves one user by id
 router.get('/:id', function(req,res) {
 
-	User
+	Playlist
 		.findById(req.params.id)
 		.exec()
-		.then(users => res.json(users.apiRepr()))
+		.then(playlists => res.json(playlists.apiRepr()))
 		.catch(err => {
 			console.error(err);
 			res.status(500).json({error: 'there was an error'});
@@ -60,7 +59,7 @@ router.put('/:id', function(req,res) {
 	const toUpdate = {};
 	const updateableFields = ['firstName', 'lastName', 'email', 'password', 'playlists']
 
-	
+
 
 
 	updateableFields.forEach(field => {

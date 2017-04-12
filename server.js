@@ -20,6 +20,8 @@ const mongoose = require('mongoose');
 
 const usersRouter = require('./routes/usersRouter');
 
+const playlistsRouter = require('./routes/playlistsRouter');
+
 const {DATABASE_URL, PORT } =  require('./config/config');
 
 //tells express which folder to serve static files from
@@ -38,6 +40,7 @@ mongoose.Promise = global.Promise;
 
 
 app.use('/users', usersRouter);
+app.use('/playlists', playlistsRouter);
 
 
 // closeServer needs access to a server object, but that only
