@@ -8,3 +8,18 @@ const userSchema = mongoose.Schema({
 	password: {type: String, required: true},
 	playlists: {type: Array}
 });
+
+
+userSchema.methods.apiRepr = function() {
+	return {
+		id: this._id,
+		lastName: this.lastName,
+		email: this.email,
+		password: this.password,
+		playlists: this.playlists
+	}
+}
+
+const User = mongoose.model('Users', userSchema);
+
+module.exports = {User};
