@@ -6,6 +6,20 @@
 > Cerebro Music is an app intended to provide users the ability to find songs and create playlists.
 
 
+# Getting Started 
+
+## Installing 
+
+* git clone https://github.com/allen30331/cerebro
+* cd cerebro
+* npm install
+
+## Launching 
+
+* npm start
+* open localhost:8080 in browser
+
+
 # API Routes
 
 ## Users
